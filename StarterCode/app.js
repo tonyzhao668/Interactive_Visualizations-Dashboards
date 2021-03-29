@@ -48,18 +48,148 @@ d3.json("samples.json").then((data) => {
         };
 
 
-        function charts_show(objb) {
-            var sv_obj = {};
-            var sam_values = objb.sample_values;
-            //console.log(sam_values);
+        function charts_show(obja,objb) {
+        
+            var sam_values = objb.sample_values.slice(0, 10).reverse();
+            var otuids = objb.otu_ids.slice(0, 10).reverse();
+            var otulabels = objb.otu_labels.slice(0, 10).reverse();
+            var ylabel = otuids.map(item => `OTU_${item}`);
+            var wfre = obja.wfreq;
+            
+            //console.log(ylabel);
 
-            for (var i = 0; i < sam_values.length; i++) {
-                sv_obj[i] = sam_values[i];
+            // Trace1 for the top 10 OTU Data
+            var trace1 = {
+            x: sam_values,
+            y: ylabel,
+            text: otulabels,
+            name: "Top 10 Otu Facts",
+            type: "bar",
+            orientation: "h"
             };
-            console.log(sv_obj);
+
+            var chartData = [trace1];
+
+            var layout = {
+                title: "Top 10 Otu Facts",
+                xaxis:{title:{text:"Sample_Values"}},
+                yaxis: {title:{text:"OTU_IDS"}},
+
+                margin: {
+                  l: 100,
+                  r: 100,
+                  t: 100,
+                  b: 100
+                }
+              };
+
+            Plotly.newPlot("bar", chartData, layout);
+
+            //bubble workshop
+            var yvalues = objb.sample_values;
+            var xvalues = objb.otu_ids;           
+            var colorlist =[];
+            var opalist = [];
+            var sizelist = [];
+            var lengthh = xvalues.length;
+           
+            for (var i = 0; i < lengthh; i++) {
+                var si = getRandomSize();
+                var co = getRandomColor();
+                var op = getRandomOpacity();
+                colorlist.push(co);
+                opalist.push(op);
+                sizelist.push(si);
+            };
+
+            // console.log(colorlist);
+            // console.log(opalist);
+            // console.log(sizelist);
+
+            var trace2 = {
+                x: xvalues,
+                y: yvalues,
+                mode: 'markers',
+                marker: {
+                  color: colorlist,
+                  opacity: opalist,
+                  size: sizelist
+                }
+              };
+              
+              var data = [trace2];
+              
+              var layout = {
+                title: 'OTU ID vs. Sample_Values',
+                xaxis:{title:{text:"OTU_IDS"}},
+                yaxis: {title:{text:"Sample_values"}},
+                showlegend: false,
+                height: 500,
+                width: 800
+              };
+              
+              Plotly.newPlot('bubble', data, layout);
+
+              function getRandomColor() {              
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                  color += letters[Math.floor(Math.random() * 16)];
+                }
+                //console.log(color);
+                return color;
+                }
+
+              function getRandomSize() {
+                var inisize = 100;
+                var size = Math.floor(Math.random() * inisize) + 1;
+                //console.log(size);
+                return size;
+              }
+
+              function getRandomOpacity() {
+                var opa = Math.random();
+                //console.log(opa);
+                return opa;
+              }
+           
+              var data = [
+                {
+                  domain: { x: [0, 1], y: [0, 1] },
+                  value: wfre,
+                  title: { text: "Weekly Belly Button Washing Frequency" },
+                  type: "indicator",
+                  mode: "gauge+number+delta",
+                  //delta: { reference: 4 },
+                  gauge: {
+                    axis: { range: [null, 10] },
+                    steps: [
+                      { range: [0, 2], color: "#F5FAF9" },
+                      { range: [2, 4], color: "#CAF7F4" },
+                      { range: [4, 6], color: "#9BF3ED" },
+                      { range: [6, 8], color: "#6EF2E9" },
+                      { range: [8, 10], color:"#2DF0E3" }
+                    ],
+                    threshold: {
+                      line: { color: "red", width: 4 },
+                      thickness: 0.75,
+                      value: 9
+                    }
+                  }
+                }
+              ];
+              
+              var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+              Plotly.newPlot('gauge', data, layout);
+           
+
+            // console.log(si);
+            // console.log(co);
+            // console.log(op);
+            
         }
 
-        charts_show(obs);
+        charts_show(obj, obs);
     }
 
     function handleSubmit() {

@@ -161,7 +161,7 @@ d3.json("samples.json").then((data) => {
               
               //function for bubble size with each input value
               function getSize(b) {
-                var size = b * 5 > 100 ? 100 : b * 5;
+                var size = b * 8 > 150 ? 150 : b * 8;
                 //var size = Math.floor(Math.random() * inisize) + 1;
                 //console.log(size);
                 return size;

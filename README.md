@@ -4,12 +4,17 @@ By Tony Zhao finished on 29/03/2020
 
 ## Background
 
-![Bacteria by filterforge.com](Images/bacteria.jpg)
-
 To build an interactive dashboard to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.
 
 The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
+### Dashboard built
+
+![Bacteria Dashboard](images/dashboard.PNG)
+
+### Drop Menu to select test ID
+
+![Drop Menu](images/drop_menu.png)
 
 ## Step 1: Plotly
 

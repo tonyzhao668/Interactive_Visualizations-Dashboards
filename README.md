@@ -61,6 +61,8 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 * Adapt a Gauge Chart to plot the weekly washing frequency of the individual.
 
+![Dial Guage](images/dialchart.PNG)
+
 * Update the chart whenever a new sample is selected.
 
 

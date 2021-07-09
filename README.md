@@ -10,9 +10,13 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 ## Job done:
 
-### My webpage built:
+### Webpage select:
 
-[Belly Button](https://tonyzhao668.github.io/Interactive_Visualizations-Dashboards/)
+![Bellybio](images/bellybio.gif)
+
+### My webpage show:
+
+[Belly Button Bio](https://tonyzhao668.github.io/Interactive_Visualizations-Dashboards/)
 
 ### Dashboard built:
 
